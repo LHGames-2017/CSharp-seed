@@ -37,12 +37,12 @@ namespace StarterProject.Web.Api
     // DO NO REORDER THIS, make sure it matches the typescript tile enum.
     public enum TileType
     {
-        T,  //Tile
-        W,  //Wall
-        H,  //House
-        L,  //Lava
-        R,  //Resource
-        S   //Shop
+        Tile,
+        Wall,
+        House,
+        Lava,
+        Resource,
+        Shop
     }
 
     public class Point
@@ -78,30 +78,35 @@ namespace StarterProject.Web.Api
 
     public struct GameInfo
     {
-        public Player Player;
+        public PrivatePlayerInfo Player;
         public string CustomSerializedMap;
-        public List<KeyValuePair<string, PlayerInfo>> OtherPlayers;
+        public List<KeyValuePair<string, PublicPlayerInfo>> OtherPlayers;
     }
 
-    public struct Tile
+    public class Tile
     {
+        public TileType TileType
+        {
+            get
+            {
+                return (TileType)C;
+            }
+        }
+        public int X { get; private set; }
+        public int Y { get; private set; }
+        private byte C;
+
         public Tile(byte content, int x, int y)
         {
             C = content;
             X = x;
             Y = y;
         }
-        /// <summary>
-        /// Content
-        /// </summary>
-        public byte C;
-        public int X;
-        public int Y;
     }
 
-    public struct Player
+    public class PrivatePlayerInfo
     {
-        public Player(int health, int maxHealth, Point position, Point houseLocation, int score, int carriedResources, int carryingCapacity)
+        public PrivatePlayerInfo(int health, int maxHealth, Point position, Point houseLocation, int score, int carriedResources, int carryingCapacity)
         {
             Health = health;
             MaxHealth = maxHealth;
@@ -121,9 +126,9 @@ namespace StarterProject.Web.Api
         public int Score;
     }
 
-    public struct PlayerInfo
+    public class PublicPlayerInfo
     {
-        public PlayerInfo(int health, int maxHealth, Point position)
+        public PublicPlayerInfo(int health, int maxHealth, Point position)
         {
             Health = health;
             MaxHealth = maxHealth;
@@ -133,17 +138,5 @@ namespace StarterProject.Web.Api
         public int Health;
         public int MaxHealth;
         public Point Position;
-    }
-
-    // TODO: Replace this with TileType enum.
-    public enum TileContent
-    {
-        Empty,
-        Wall,
-        House,
-        Lava,
-        Resource,
-        Shop,
-        Player
     }
 }

@@ -75,6 +75,7 @@ namespace LHGames.DataStructures
         public int MaxHealth;
         public int CarriedResources;
         public int CarryingCapacity;
+        public int TotalResources;
         public int AttackPower;
         public int Defence;
         public Point Position;

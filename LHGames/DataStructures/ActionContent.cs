@@ -1,43 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System;
 
-namespace StarterProject.Web.Api
+namespace LHGames.DataStructures
 {
-    public enum MessageType
-    {
-        Connect,
-        BeginTurn,
-        Action,
-        Ping
-    }
-
-    public interface IMessage
-    {
-        MessageType Type { get; }
-        string Content { get; }
-    }
-
-    public class Message : IMessage
-    {
-        public MessageType Type { get; set; }
-        public string Content { get; set; }
-
-        public Message(MessageType type, string content = "")
-        {
-            Type = type;
-            Content = content;
-        }
-    }
-
     public class ActionContent
     {
         public string ActionName { get; set; }
         public string Content { get; set; }
-        public ActionContent()
+        public ActionContent(string name)
         {
+            ActionName = name;
 
         }
-
         public ActionContent(string name, Point content)
         {
             ActionName = name;

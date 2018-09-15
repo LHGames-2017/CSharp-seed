@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using LHGames;
+using LHGames.DataStructures;
 
 namespace StarterProject.Web.Api.Controllers
 {
@@ -22,7 +23,7 @@ namespace StarterProject.Web.Api.Controllers
             GameInfo gameInfo = JsonConvert.DeserializeObject<GameInfo>(data);
             playerBot.PlayerInfo = gameInfo.Player;
 
-            var map = MapHelper.DeserializeMap(gameInfo.CustomSerializedMap);
+            var map = MapHelper.DeserializeMap(gameInfo.CustomSerializedMap, gameInfo.xMin, gameInfo.yMin);
             return playerBot.ExecuteTurn(map, gameInfo.OtherPlayers);
         }
     }

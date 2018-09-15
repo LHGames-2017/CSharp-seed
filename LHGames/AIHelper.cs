@@ -8,8 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using LHGames.DataStructures;
 
-namespace StarterProject.Web.Api
+namespace LHGames
 {
     public static class AIHelper
     {
@@ -28,24 +29,24 @@ namespace StarterProject.Web.Api
             return CreateAction("CollectAction", position);
         }
 
-        public static string CreateMoveAction(Point newPosition)
+        public static string CreateMoveAction(Point direction)
         {
-            return CreateAction("MoveAction", newPosition);
+            return CreateAction("MoveAction", direction);
         }
 
         public static string CreateUpgradeAction(UpgradeType upgrade)
         {
-            return JsonConvert.SerializeObject(new ActionContent("UpgradeAction", upgrade) ); ;
+            return JsonConvert.SerializeObject(new ActionContent("UpgradeAction", upgrade));
         }
 
         public static string CreatePurchaseAction(PurchasableItem item)
         {
-            return JsonConvert.SerializeObject(new ActionContent("PurchaseAction", item) ); ;
+            return JsonConvert.SerializeObject(new ActionContent("PurchaseAction", item));
         }
 
         public static string CreateHealAction()
         {
-            return JsonConvert.SerializeObject(new ActionContent() { ActionName = "HealAction" }); ;
+            return JsonConvert.SerializeObject(new ActionContent("HealAction"));
         }
 
         private static string CreateAction(string name, Point target)

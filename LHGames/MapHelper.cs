@@ -3,14 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LHGames.DataStructures;
 
 namespace LHGames
 {
     public static class MapHelper
     {
-        public static Tile[,] DeserializeMap(string customSerializedMap)
+        public static Tile[,] DeserializeMap(string customSerializedMap, int xMin, int yMin)
         {
-            customSerializedMap = customSerializedMap.Substring(1, customSerializedMap.Length - 1);
+            customSerializedMap = customSerializedMap.Substring(1, customSerializedMap.Length - 2);
             var rows = customSerializedMap.Split('[');
             var column = rows[1].Split('{');
             var map = new Tile[rows.Length - 1, column.Length - 1];
@@ -19,8 +20,13 @@ namespace LHGames
                 column = rows[i + 1].Split('{');
                 for (int j = 0; j < column.Length - 1; j++)
                 {
-                    var infos = column[j + 1].Split(',');
-                    map[i, j] = new Tile(byte.Parse(infos[0]), int.Parse(infos[1]), int.Parse(infos[2].Substring(0, infos[2].IndexOf('}'))));
+                    var tileType = (byte)TileType.Tile;
+                    if (column[j + 1][0] != '}')
+                    {
+                        var infos = column[j + 1].Split('}');
+                        tileType = byte.Parse(infos[0]);
+                    }
+                    map[i, j] = new Tile(tileType, i + xMin, j + yMin);
                 }
             }
             return map;

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using LHGames.DataStructures;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace StarterProject.Web.Api
+namespace LHGames.DataStructures
 {
     public enum ActionTypes
     {
@@ -45,88 +46,44 @@ namespace StarterProject.Web.Api
         Shop
     }
 
-    public class Point
-    {
-        public int X { get; private set; }
-        public int Y { get; private set; }
-
-        public Point(int x = 0, int y = 0)
-        {
-            X = x;
-            Y = y;
-        }
-
-        public static Point operator -(Point pt1, Point pt2)
-        {
-            return new Point(pt1.X - pt2.X, pt1.Y - pt2.Y);
-        }
-
-        public static Point operator +(Point pt1, Point pt2)
-        {
-            return new Point(pt1.X + pt2.X, pt1.Y + pt2.Y);
-        }
-
-        public static double Distance(Point p1, Point p2)
-        {
-            return Math.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y));
-        }
-        public override string ToString()
-        {
-            return string.Format("{{{0}, {1}}}", X, Y);
-        }
-    }
-
     public struct GameInfo
     {
         public PrivatePlayerInfo Player;
         public string CustomSerializedMap;
         public List<KeyValuePair<string, PublicPlayerInfo>> OtherPlayers;
+        public int xMin;
+        public int yMin;
     }
 
     public class Tile
     {
-        public TileType TileType
-        {
-            get
-            {
-                return (TileType)C;
-            }
-        }
+        public TileType TileType { get; private set; }
         public int X { get; private set; }
         public int Y { get; private set; }
-        private byte C;
 
         public Tile(byte content, int x, int y)
         {
-            C = content;
+            TileType = (TileType)content;
             X = x;
             Y = y;
         }
     }
 
-    public class PrivatePlayerInfo
+    public struct PrivatePlayerInfo
     {
-        public PrivatePlayerInfo(int health, int maxHealth, Point position, Point houseLocation, int score, int carriedResources, int carryingCapacity)
-        {
-            Health = health;
-            MaxHealth = maxHealth;
-            Position = position;
-            HouseLocation = houseLocation;
-            Score = score;
-            CarriedResources = carriedResources;
-            CarryingCapacity = carryingCapacity;
-        }
-
         public int Health;
         public int MaxHealth;
         public int CarriedResources;
         public int CarryingCapacity;
+        public int AttackPower;
+        public int Defence;
         public Point Position;
         public Point HouseLocation;
         public int Score;
+        public string Name;
     }
 
-    public class PublicPlayerInfo
+    public struct PublicPlayerInfo
     {
         public PublicPlayerInfo(int health, int maxHealth, Point position)
         {

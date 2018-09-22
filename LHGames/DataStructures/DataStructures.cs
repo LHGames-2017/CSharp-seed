@@ -80,6 +80,7 @@ namespace LHGames.DataStructures
         int Defence { get; }
         Point Position { get; }
         Point HouseLocation { get; }
+        PurchasableItem[] CarriedItems { get; }
         int Score { get; }
         string Name { get; }
     }

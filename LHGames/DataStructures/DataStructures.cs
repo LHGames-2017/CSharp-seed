@@ -48,7 +48,7 @@ namespace LHGames.DataStructures
 
     public struct GameInfo
     {
-        public PrivatePlayerInfo Player;
+        public IPlayer Player;
         public string CustomSerializedMap;
         public List<KeyValuePair<string, PublicPlayerInfo>> OtherPlayers;
         public int xMin;
@@ -69,19 +69,19 @@ namespace LHGames.DataStructures
         }
     }
 
-    public struct PrivatePlayerInfo
+    public interface IPlayer
     {
-        public int Health;
-        public int MaxHealth;
-        public int CarriedResources;
-        public int CarryingCapacity;
-        public int TotalResources;
-        public int AttackPower;
-        public int Defence;
-        public Point Position;
-        public Point HouseLocation;
-        public int Score;
-        public string Name;
+        int Health { get; }
+        int MaxHealth { get; }
+        int CarriedResources { get; }
+        int CarryingCapacity { get; }
+        int TotalResources { get; }
+        int AttackPower { get; }
+        int Defence { get; }
+        Point Position { get; }
+        Point HouseLocation { get; }
+        int Score { get; }
+        string Name { get; }
     }
 
     public struct PublicPlayerInfo

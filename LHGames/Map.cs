@@ -33,16 +33,20 @@ namespace LHGames
 
         /// <summary>
         /// Returns the TileType at this location. If you try to look outside 
-        /// of your visible region, it will always return TileType.Tile. (Empty tile)
+        /// of your visible region, it will always return TileType.Tile (Empty
+        /// tile).
+        /// 
+        /// Negative values are valid since the map wraps around when you reach
+        /// the end.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns></returns>
-        internal TileType GetTileAt(int x, int y)
+        /// <param name="x">The X coordinate.</param>
+        /// <param name="y">The Y coordinate.</param>
+        /// <returns>The content of the tile.</returns>
+        internal TileContent GetTileAt(int x, int y)
         {
             if (x < XMin || x > XMax || y < YMin || y > YMax)
             {
-                return TileType.Tile;
+                return TileContent.Empty;
             }
             return Tiles[x - XMin, y - YMin].TileType;
         }
@@ -63,7 +67,7 @@ namespace LHGames
                 column = rows[i + 1].Split('{');
                 for (int j = 0; j < column.Length - 1; j++)
                 {
-                    var tileType = (byte)TileType.Tile;
+                    var tileType = (byte)TileContent.Empty;
                     if (column[j + 1][0] != '}')
                     {
                         var infos = column[j + 1].Split('}');

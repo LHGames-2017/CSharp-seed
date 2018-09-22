@@ -36,14 +36,15 @@ namespace LHGames.DataStructures
     }
 
     // DO NO REORDER THIS, make sure it matches the typescript tile enum.
-    public enum TileType
+    public enum TileContent
     {
-        Tile,
+        Empty,
         Wall,
         House,
         Lava,
         Resource,
-        Shop
+        Shop,
+        Player
     }
 
     public struct GameInfo
@@ -57,15 +58,19 @@ namespace LHGames.DataStructures
 
     public class Tile
     {
-        public TileType TileType { get; private set; }
+        public TileContent TileType { get; private set; }
         public int X { get; private set; }
         public int Y { get; private set; }
 
         public Tile(byte content, int x, int y)
         {
-            TileType = (TileType)content;
+            TileType = (TileContent)content;
             X = x;
             Y = y;
+        }
+        public override string ToString()
+        {
+            return TileType.ToString();
         }
     }
 

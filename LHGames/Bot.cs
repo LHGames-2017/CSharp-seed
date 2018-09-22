@@ -31,7 +31,7 @@ namespace LHGames
         internal string ExecuteTurn(Map map, List<KeyValuePair<string, PublicPlayerInfo>> visiblePlayers)
         {
             // TODO: Implement your AI here.
-            if (map.GetTileAt(PlayerInfo.Position.X + currentDirection, PlayerInfo.Position.Y) == TileType.Wall)
+            if (map.GetTileAt(PlayerInfo.Position.X + currentDirection, PlayerInfo.Position.Y) == TileContent.Wall)
             {
                 currentDirection *= -1;
             }

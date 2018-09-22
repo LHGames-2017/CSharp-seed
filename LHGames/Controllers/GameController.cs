@@ -22,8 +22,10 @@ namespace StarterProject.Web.Api.Controllers
 
             GameInfo gameInfo = JsonConvert.DeserializeObject<GameInfo>(data);
             var map = new Map(gameInfo.CustomSerializedMap, gameInfo.xMin, gameInfo.yMin);
+
             playerBot.BeforeTurn(gameInfo.Player);
             var playerAction = playerBot.ExecuteTurn(map, gameInfo.OtherPlayers);
+
             playerBot.AfterTurn();
             return playerAction;
         }

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace LHGames
 {
+    /// <summary>
+    /// This class represents the GameMap.
+    /// DO NOT MODIFY FUNCTIONS FROM THIS CLASS.
+    /// </summary>
     internal class Map
     {
         private Tile[,] Tiles { get; set; }
@@ -21,24 +25,9 @@ namespace LHGames
 
         internal Map(string customSerializedMap, int xMin, int yMin)
         {
-            customSerializedMap = customSerializedMap.Substring(1, customSerializedMap.Length - 2);
-            var rows = customSerializedMap.Split('[');
-            var column = rows[1].Split('{');
-            Tiles = new Tile[rows.Length - 1, column.Length - 1];
-            for (int i = 0; i < rows.Length - 1; i++)
-            {
-                column = rows[i + 1].Split('{');
-                for (int j = 0; j < column.Length - 1; j++)
-                {
-                    var tileType = (byte)TileType.Tile;
-                    if (column[j + 1][0] != '}')
-                    {
-                        var infos = column[j + 1].Split('}');
-                        tileType = byte.Parse(infos[0]);
-                    }
-                    Tiles[i, j] = new Tile(tileType, i + xMin, j + yMin);
-                }
-            }
+            XMin = xMin;
+            YMin = yMin;
+            DeserializeMap(customSerializedMap);
             InitMapSize();
         }
 
@@ -58,21 +47,46 @@ namespace LHGames
             return Tiles[x - XMin, y - YMin].TileType;
         }
 
+        /// <summary>
+        /// Deserialize the map received from the game server. 
+        /// DO NOT MODIFY THIS.
+        /// </summary>
+        /// <param name="customSerializedMap">The received map.</param>
+        private void DeserializeMap(string customSerializedMap)
+        {
+            customSerializedMap = customSerializedMap.Substring(1, customSerializedMap.Length - 2);
+            var rows = customSerializedMap.Split('[');
+            var column = rows[1].Split('{');
+            Tiles = new Tile[rows.Length - 1, column.Length - 1];
+            for (int i = 0; i < rows.Length - 1; i++)
+            {
+                column = rows[i + 1].Split('{');
+                for (int j = 0; j < column.Length - 1; j++)
+                {
+                    var tileType = (byte)TileType.Tile;
+                    if (column[j + 1][0] != '}')
+                    {
+                        var infos = column[j + 1].Split('}');
+                        tileType = byte.Parse(infos[0]);
+                    }
+                    Tiles[i, j] = new Tile(tileType, i + XMin, j + YMin);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Initializes the XMax, YMax and VisibleDistance.
+        /// </summary>
         private void InitMapSize()
         {
             if (Tiles == null)
             {
-                XMin = XMax = YMin = YMax = 0;
-                VisibleDistance = 0;
+                throw new InvalidOperationException("Tiles cannot be null.");
             }
-            else
-            {
-                XMin = Tiles[0, 0].X;
-                YMin = Tiles[0, 0].Y;
-                XMax = XMin + Tiles.GetLength(0);
-                YMax = YMin + Tiles.GetLength(1);
-                VisibleDistance = (XMax - XMin - 1) / 2;
-            }
+
+            XMax = XMin + Tiles.GetLength(0);
+            YMax = YMin + Tiles.GetLength(1);
+            VisibleDistance = (XMax - XMin - 1) / 2;
         }
     }
 }

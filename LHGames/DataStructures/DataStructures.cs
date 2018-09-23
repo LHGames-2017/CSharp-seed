@@ -1,7 +1,4 @@
-﻿using LHGames.DataStructures;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace LHGames.DataStructures
 {
@@ -78,6 +75,7 @@ namespace LHGames.DataStructures
         int MaxHealth { get; }
         int CarriedResources { get; }
         int CarryingCapacity { get; }
+        double CollectingSpeed { get; }
         int TotalResources { get; }
         int AttackPower { get; }
         int Defence { get; }
@@ -94,6 +92,7 @@ namespace LHGames.DataStructures
         public int MaxHealth { get; set; }
         public int CarriedResources { get; set; }
         public int CarryingCapacity { get; set; }
+        public double CollectingSpeed { get; set; }
         public int TotalResources { get; set; }
         public int AttackPower { get; set; }
         public int Defence { get; set; }
@@ -102,19 +101,5 @@ namespace LHGames.DataStructures
         public PurchasableItem[] CarriedItems { get; set; }
         public int Score { get; set; }
         public string Name { get; set; }
-    }
-
-    public struct PublicPlayerInfo
-    {
-        public PublicPlayerInfo(int health, int maxHealth, Point position)
-        {
-            Health = health;
-            MaxHealth = maxHealth;
-            Position = position;
-        }
-
-        public int Health;
-        public int MaxHealth;
-        public Point Position;
     }
 }

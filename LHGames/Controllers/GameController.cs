@@ -10,7 +10,7 @@ namespace StarterProject.Web.Api.Controllers
     [Route("/")]
     public class GameController : Controller
     {
-        Bot playerBot = new Bot();
+        static Bot playerBot = new Bot();
 
         [HttpPost]
         public string Index([FromForm]string data)
@@ -21,10 +21,13 @@ namespace StarterProject.Web.Api.Controllers
             }
 
             GameInfo gameInfo = JsonConvert.DeserializeObject<GameInfo>(data);
-            playerBot.PlayerInfo = gameInfo.Player;
+            var map = new Map(gameInfo.CustomSerializedMap, gameInfo.xMin, gameInfo.yMin);
 
-            var map = MapHelper.DeserializeMap(gameInfo.CustomSerializedMap, gameInfo.xMin, gameInfo.yMin);
-            return playerBot.ExecuteTurn(map, gameInfo.OtherPlayers);
+            playerBot.BeforeTurn(gameInfo.Player);
+            var playerAction = playerBot.ExecuteTurn(map, gameInfo.OtherPlayers);
+
+            playerBot.AfterTurn();
+            return playerAction;
         }
     }
 }

@@ -36,19 +36,20 @@ namespace LHGames.DataStructures
     }
 
     // DO NO REORDER THIS, make sure it matches the typescript tile enum.
-    public enum TileType
+    public enum TileContent
     {
-        Tile,
+        Empty,
         Wall,
         House,
         Lava,
         Resource,
-        Shop
+        Shop,
+        Player
     }
 
     public struct GameInfo
     {
-        public PrivatePlayerInfo Player;
+        public Player Player;
         public string CustomSerializedMap;
         public List<KeyValuePair<string, PublicPlayerInfo>> OtherPlayers;
         public int xMin;
@@ -57,31 +58,50 @@ namespace LHGames.DataStructures
 
     public class Tile
     {
-        public TileType TileType { get; private set; }
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        public TileContent TileType { get; private set; }
+        public Point Position { get; private set; }
 
         public Tile(byte content, int x, int y)
         {
-            TileType = (TileType)content;
-            X = x;
-            Y = y;
+            TileType = (TileContent)content;
+            Position = new Point(x, y);
+        }
+        public override string ToString()
+        {
+            return TileType.ToString();
         }
     }
 
-    public struct PrivatePlayerInfo
+    public interface IPlayer
     {
-        public int Health;
-        public int MaxHealth;
-        public int CarriedResources;
-        public int CarryingCapacity;
-        public int TotalResources;
-        public int AttackPower;
-        public int Defence;
-        public Point Position;
-        public Point HouseLocation;
-        public int Score;
-        public string Name;
+        int Health { get; }
+        int MaxHealth { get; }
+        int CarriedResources { get; }
+        int CarryingCapacity { get; }
+        int TotalResources { get; }
+        int AttackPower { get; }
+        int Defence { get; }
+        Point Position { get; }
+        Point HouseLocation { get; }
+        PurchasableItem[] CarriedItems { get; }
+        int Score { get; }
+        string Name { get; }
+    }
+
+    public class Player : IPlayer
+    {
+        public int Health { get; set; }
+        public int MaxHealth { get; set; }
+        public int CarriedResources { get; set; }
+        public int CarryingCapacity { get; set; }
+        public int TotalResources { get; set; }
+        public int AttackPower { get; set; }
+        public int Defence { get; set; }
+        public Point Position { get; set; }
+        public Point HouseLocation { get; set; }
+        public PurchasableItem[] CarriedItems { get; set; }
+        public int Score { get; set; }
+        public string Name { get; set; }
     }
 
     public struct PublicPlayerInfo

@@ -59,14 +59,12 @@ namespace LHGames.DataStructures
     public class Tile
     {
         public TileContent TileType { get; private set; }
-        public int X { get; private set; }
-        public int Y { get; private set; }
+        public Point Position { get; private set; }
 
         public Tile(byte content, int x, int y)
         {
             TileType = (TileContent)content;
-            X = x;
-            Y = y;
+            Position = new Point(x, y);
         }
         public override string ToString()
         {

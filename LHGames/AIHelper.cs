@@ -15,44 +15,44 @@ namespace LHGames
     public static class AIHelper
     {
         /// <summary>
-        /// Creates a steal Action. You can only steal from Adjacent tiles 
+        /// Creates a steal Action. You can only steal from Adjacent tiles
         /// (no diagonals).
         /// </summary>
-        /// <param name="direction">The direction you want to steal from.</param>
+        /// <param name="position">The absolute position you want to steal from.</param>
         /// <returns>The steal Action.</returns>
-        public static string CreateStealAction(Point direction)
+        public static string CreateStealAction(Point position)
         {
-            return CreateAction("StealAction", direction);
+            return CreateAction("StealAction", position);
         }
 
         /// <summary>
         /// Creates a melee attack Action. You can only attack someone on an 
         /// Adjacent tile.
         /// </summary>
-        /// <param name="direction">The direction of your target.</param>
+        /// <param name="position">The absolute position of your target.</param>
         /// <returns>The attack Action.</returns>
-        public static string CreateMeleeAttackAction(Point direction)
+        public static string CreateMeleeAttackAction(Point position)
         {
-            return CreateAction("AttackAction", direction);
+            return CreateAction("AttackAction", position);
         }
 
         /// <summary>
         /// Creates a Collect Action. You can only collect resources from 
         /// Adjacent tiles (no diagonals).
         /// </summary>
-        /// <param name="direction">The direction you want to collect from.
+        /// <param name="position">The absolute position you want to collect from.
         /// </param>
         /// <returns>The collect Action.</returns>
-        public static string CreateCollectAction(Point direction)
+        public static string CreateCollectAction(Point position)
         {
-            return CreateAction("CollectAction", direction);
+            return CreateAction("CollectAction", position);
         }
 
         /// <summary>
         /// Creates a move action to the specified direction. You can only move
         /// to adjacent tiles (no diagonals).
         /// </summary>
-        /// <param name="direction">The direction you want to move to.</param>
+        /// <param name="direction">The direction in which you want to move.</param>
         /// <returns>The move action.</returns>
         public static string CreateMoveAction(Point direction)
         {

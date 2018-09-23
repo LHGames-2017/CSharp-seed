@@ -51,6 +51,11 @@ namespace LHGames
             return Tiles[x - XMin, y - YMin].TileType;
         }
 
+        internal IEnumerable<Tile> GetVisibleTiles()
+        {
+            return Tiles.Cast<Tile>();
+        }
+
         /// <summary>
         /// Deserialize the map received from the game server. 
         /// DO NOT MODIFY THIS.

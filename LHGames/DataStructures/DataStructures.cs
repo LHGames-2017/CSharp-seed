@@ -51,7 +51,7 @@ namespace LHGames.DataStructures
     {
         public Player Player;
         public string CustomSerializedMap;
-        public List<KeyValuePair<string, PublicPlayerInfo>> OtherPlayers;
+        public List<KeyValuePair<string, Player>> OtherPlayers;
         public int xMin;
         public int yMin;
     }

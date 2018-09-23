@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Linq;
 using LHGames;
 using LHGames.DataStructures;
 
@@ -24,7 +25,7 @@ namespace StarterProject.Web.Api.Controllers
             var map = new Map(gameInfo.CustomSerializedMap, gameInfo.xMin, gameInfo.yMin);
 
             playerBot.BeforeTurn(gameInfo.Player);
-            var playerAction = playerBot.ExecuteTurn(map, gameInfo.OtherPlayers);
+            var playerAction = playerBot.ExecuteTurn(map, gameInfo.OtherPlayers.Select(x => new KeyValuePair<string, IPlayer>(x.Key, x.Value)).ToList());
 
             playerBot.AfterTurn();
             return playerAction;

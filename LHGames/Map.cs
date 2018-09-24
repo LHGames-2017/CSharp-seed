@@ -51,6 +51,10 @@ namespace LHGames
             return Tiles[x - XMin, y - YMin].TileType;
         }
 
+        /// <summary>
+        /// Returns an IEnumerable of all tiles that are visible to your bot.
+        /// </summary>
+        /// <returns>All visible tiles.</returns>
         internal IEnumerable<Tile> GetVisibleTiles()
         {
             return Tiles.Cast<Tile>();

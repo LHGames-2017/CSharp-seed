@@ -28,7 +28,7 @@ namespace LHGames
         /// <param name="map">The gamemap.</param>
         /// <param name="visiblePlayers">Players that are visible to your bot.</param>
         /// <returns>The action you wish to execute.</returns>
-        internal string ExecuteTurn(Map map, List<KeyValuePair<string, PublicPlayerInfo>> visiblePlayers)
+        internal string ExecuteTurn(Map map, List<IPlayer> visiblePlayers)
         {
             // TODO: Implement your AI here.
             if (map.GetTileAt(PlayerInfo.Position.X + currentDirection, PlayerInfo.Position.Y) == TileContent.Wall)

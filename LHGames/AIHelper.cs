@@ -18,34 +18,35 @@ namespace LHGames
         /// Creates a steal Action. You can only steal from Adjacent tiles
         /// (no diagonals).
         /// </summary>
-        /// <param name="position">The absolute position you want to steal from.</param>
+        /// <param name="direction">The direction from which you want to steal.</param>
         /// <returns>The steal Action.</returns>
-        public static string CreateStealAction(Point position)
+        public static string CreateStealAction(Point direction)
         {
-            return CreateAction("StealAction", position);
+            return CreateAction("StealAction", direction);
         }
 
         /// <summary>
         /// Creates a melee attack Action. You can only attack someone on an 
         /// Adjacent tile.
         /// </summary>
-        /// <param name="position">The absolute position of your target.</param>
+        /// <param name="direction">The directionof your target.</param>
         /// <returns>The attack Action.</returns>
-        public static string CreateMeleeAttackAction(Point position)
+        public static string CreateMeleeAttackAction(Point direction)
         {
-            return CreateAction("MeleeAttackAction", position);
+            return CreateAction("MeleeAttackAction", direction);
         }
 
         /// <summary>
         /// Creates a Collect Action. You can only collect resources from 
         /// Adjacent tiles (no diagonals).
         /// </summary>
-        /// <param name="position">The absolute position you want to collect from.
+        /// <param name="direction">The direction of the resource you want
+        /// to collect from.
         /// </param>
         /// <returns>The collect Action.</returns>
-        public static string CreateCollectAction(Point position)
+        public static string CreateCollectAction(Point direction)
         {
-            return CreateAction("CollectAction", position);
+            return CreateAction("CollectAction", direction);
         }
 
         /// <summary>
@@ -93,6 +94,15 @@ namespace LHGames
         public static string CreateHealAction()
         {
             return JsonConvert.SerializeObject(new ActionContent("HealAction"));
+        }
+
+        /// <summary>
+        /// Creates an action that does nothing.
+        /// </summary>
+        /// <returns>An empty action.</returns>
+        public static string CreateEmptyAction()
+        {
+            return "";
         }
 
         private static string CreateAction(string name, Point target)

@@ -33,7 +33,7 @@ namespace LHGames
         /// <returns>The attack Action.</returns>
         public static string CreateMeleeAttackAction(Point position)
         {
-            return CreateAction("AttackAction", position);
+            return CreateAction("MeleeAttackAction", position);
         }
 
         /// <summary>

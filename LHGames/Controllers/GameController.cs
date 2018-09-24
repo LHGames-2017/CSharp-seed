@@ -25,7 +25,7 @@ namespace StarterProject.Web.Api.Controllers
             var map = new Map(gameInfo.CustomSerializedMap, gameInfo.xMin, gameInfo.yMin);
 
             playerBot.BeforeTurn(gameInfo.Player);
-            var playerAction = playerBot.ExecuteTurn(map, gameInfo.OtherPlayers.Select(x => new KeyValuePair<string, IPlayer>(x.Key, x.Value)).ToList());
+            var playerAction = playerBot.ExecuteTurn(map, gameInfo.OtherPlayers.Select(p => p as IPlayer).ToList());
 
             playerBot.AfterTurn();
             return playerAction;

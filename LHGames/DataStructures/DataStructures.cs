@@ -70,6 +70,20 @@ namespace LHGames.DataStructures
         }
     }
 
+    public class ResourceTile : Tile
+    {
+        public int AmountLeft { get; private set; }
+        public double Density { get; private set; }
+
+        public ResourceTile(byte content, int x, int y, int amountLeft, double density)
+            : base(content, x, y)
+        {
+            AmountLeft = amountLeft;
+            Density = density;
+        }
+    }
+
+
     public interface IPlayer
     {
         int Health { get; }

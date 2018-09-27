@@ -25,10 +25,10 @@ namespace LHGames.DataStructures
 
     public enum PurchasableItem
     {
-        MicrosoftSword,
-        UbisoftShield,
-        DevolutionsBackpack,
-        DevolutionsPickaxe,
+        Sword,
+        Shield,
+        Backpack,
+        Pickaxe,
         HealthPotion,
     }
 
@@ -48,6 +48,7 @@ namespace LHGames.DataStructures
     {
         public Player Player;
         public string CustomSerializedMap;
+        public List<string> Leaderboard;
         public List<Player> OtherPlayers;
         public int xMin;
         public int yMin;
@@ -84,6 +85,8 @@ namespace LHGames.DataStructures
         PurchasableItem[] CarriedItems { get; }
         int Score { get; }
         string Name { get; }
+
+        int GetUpgradeLevel(UpgradeType type);
     }
 
     public class Player : IPlayer
@@ -99,7 +102,13 @@ namespace LHGames.DataStructures
         public Point Position { get; set; }
         public Point HouseLocation { get; set; }
         public PurchasableItem[] CarriedItems { get; set; }
+        public int[] UpgradeLevels { get; set; }
         public int Score { get; set; }
         public string Name { get; set; }
+
+        public int GetUpgradeLevel(UpgradeType type)
+        {
+            return UpgradeLevels[(int)type];
+        }
     }
 }

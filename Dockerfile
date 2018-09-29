@@ -1,5 +1,8 @@
-FROM microsoft/dotnet:2-sdk
+FROM microsoft/dotnet:2.1-sdk-bionic
 WORKDIR /dotnet/LHGames
+
+RUN apt-get update
+RUN apt-get install -y libunwind-dev
 
 COPY . .
 

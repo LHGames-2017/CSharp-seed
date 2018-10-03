@@ -79,9 +79,9 @@ namespace LHGames
                     if (column[j + 1][0] != '}')
                     {
                         var infos = column[j + 1].Split('}');
-                        if (infos[0].Contains(","))
+                        infos = infos[0].Split(',');
+                        if (infos.Length > 1)
                         {
-                            infos = infos[0].Split(',');
                             tileType = byte.Parse(infos[0]);
                             var amountLeft = int.Parse(infos[1]);
                             var density = double.Parse(infos[2]);
@@ -96,7 +96,6 @@ namespace LHGames
                     {
                         Tiles[i, j] = new Tile(tileType, i + XMin, j + YMin);
                     }
-
                 }
             }
         }

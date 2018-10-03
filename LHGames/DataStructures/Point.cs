@@ -16,29 +16,21 @@ namespace LHGames.DataStructures
             Y = y;
         }
 
-        public static Point operator -(Point pt1, Point pt2)
-        {
-            return new Point(pt1.X - pt2.X, pt1.Y - pt2.Y);
-        }
+        public static double Distance(Point p1, Point p2) => Math.Sqrt(DistanceSquared(p1, p2));
+        public static double DistanceSquared(Point p1, Point p2) => (p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y);
+        public override string ToString() => string.Format("{{0}, {1}}", X, Y);
+        public static Point operator -(Point pt1, Point pt2) => new Point(pt1.X - pt2.X, pt1.Y - pt2.Y);
+        public static Point operator +(Point pt1, Point pt2) => new Point(pt1.X + pt2.X, pt1.Y + pt2.Y);
+        public static bool operator ==(Point pt1, Point pt2) => Equals(pt1, pt2);
+        public static bool operator !=(Point pt1, Point pt2) => !Equals(pt1, pt2);
+        public override bool Equals(object obj) => obj is Point pt2 && X == pt2.X && Y == pt2.Y;
 
-        public static Point operator +(Point pt1, Point pt2)
+        public override int GetHashCode()
         {
-            return new Point(pt1.X + pt2.X, pt1.Y + pt2.Y);
-        }
-
-        public static double Distance(Point p1, Point p2)
-        {
-            return Math.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y));
-        }
-
-        public static double DistanceSquared(Point p1, Point p2)
-        {
-            return (p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y);
-        }
-
-        public override string ToString()
-        {
-            return string.Format("{{{0}, {1}}}", X, Y);
+            var hashCode = 1861411795;
+            hashCode = hashCode * -1521134295 + X.GetHashCode();
+            hashCode = hashCode * -1521134295 + Y.GetHashCode();
+            return hashCode;
         }
     }
 }

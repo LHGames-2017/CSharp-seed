@@ -22,10 +22,16 @@ namespace LHGames
         /// </summary>
         public int VisibleDistance { get; set; }
 
-        internal Map(string customSerializedMap, int xMin, int yMin)
+        /// <summary>
+        /// If you can break walls (trees)
+        /// </summary>
+        public bool WallsAreBreakable { get; set; }
+        
+        internal Map(string customSerializedMap, int xMin, int yMin, bool wallsAreBreakable)
         {
             XMin = xMin;
             YMin = yMin;
+            WallsAreBreakable = wallsAreBreakable;
             DeserializeMap(customSerializedMap);
             InitMapSize();
         }

@@ -52,6 +52,7 @@ namespace LHGames.DataStructures
         public List<Player> OtherPlayers;
         public int xMin;
         public int yMin;
+        public bool WallsAreBreakable;
     }
 
     public class Tile

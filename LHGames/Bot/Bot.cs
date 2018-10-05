@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using LHGames.Helper;
 
 namespace LHGames.Bot
@@ -33,6 +34,8 @@ namespace LHGames.Bot
                 _currentDirection *= -1;
             }
 
+            var data = StorageHelper.Read<TestClass>("Test");
+            Console.WriteLine(data?.Test);
             return AIHelper.CreateMoveAction(new Point(_currentDirection, 0));
         }
 
@@ -43,4 +46,9 @@ namespace LHGames.Bot
         {
         }
     }
+}
+
+class TestClass
+{
+    public string Test { get; set; }
 }

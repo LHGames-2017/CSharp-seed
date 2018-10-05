@@ -28,6 +28,7 @@ namespace StarterProject.Web.Api.Controllers
             var playerAction = playerBot.ExecuteTurn(map, gameInfo.OtherPlayers.Select(p => p as IPlayer));
 
             playerBot.AfterTurn();
+            Console.WriteLine(playerAction);
             return playerAction;
         }
     }

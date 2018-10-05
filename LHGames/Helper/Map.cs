@@ -1,9 +1,8 @@
-﻿using LHGames.DataStructures;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LHGames
+namespace LHGames.Helper
 {
     /// <summary>
     /// This class represents the GameMap.

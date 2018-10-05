@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LHGames.DataStructures;
+﻿using System.Collections.Generic;
+using LHGames.Helper;
 
-namespace LHGames
+namespace LHGames.Bot
 {
     internal class Bot
     {
         internal IPlayer PlayerInfo { get; set; }
-        private int currentDirection = 1;
+        private int _currentDirection = 1;
 
         internal Bot() { }
 
@@ -31,12 +28,12 @@ namespace LHGames
         internal string ExecuteTurn(Map map, IEnumerable<IPlayer> visiblePlayers)
         {
             // TODO: Implement your AI here.
-            if (map.GetTileAt(PlayerInfo.Position.X + currentDirection, PlayerInfo.Position.Y) == TileContent.Wall)
+            if (map.GetTileAt(PlayerInfo.Position.X + _currentDirection, PlayerInfo.Position.Y) == TileContent.Wall)
             {
-                currentDirection *= -1;
+                _currentDirection *= -1;
             }
 
-            return AIHelper.CreateMoveAction(new Point(currentDirection, 0));
+            return AIHelper.CreateMoveAction(new Point(_currentDirection, 0));
         }
 
         /// <summary>

@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Linq;
 using LHGames;
-using LHGames.DataStructures;
+using LHGames.Bot;
+using LHGames.Helper;
 
 namespace StarterProject.Web.Api.Controllers
 {

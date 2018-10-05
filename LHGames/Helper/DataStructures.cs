@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LHGames.DataStructures
+namespace LHGames.Helper
 {
     public enum ActionTypes
     {

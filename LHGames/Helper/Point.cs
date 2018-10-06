@@ -15,7 +15,7 @@ namespace LHGames.Helper
 
         public static double Distance(Point p1, Point p2) => Math.Sqrt(DistanceSquared(p1, p2));
         public static double DistanceSquared(Point p1, Point p2) => (p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y);
-        public override string ToString() => string.Format("{{0}, {1}}", X, Y);
+        public override string ToString() => $"{{{X}, {Y}}}";
         public static Point operator -(Point pt1, Point pt2) => new Point(pt1.X - pt2.X, pt1.Y - pt2.Y);
         public static Point operator +(Point pt1, Point pt2) => new Point(pt1.X + pt2.X, pt1.Y + pt2.Y);
         public static bool operator ==(Point pt1, Point pt2) => Equals(pt1, pt2);
